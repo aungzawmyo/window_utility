@@ -1,0 +1,13 @@
+bin/
+obj/
+.vs/
+dist/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+[Dd]ebug/
+[Rr]elease/
+*.DotSettings.user
+*.pdb
+

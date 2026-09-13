@@ -1,0 +1,35 @@
+<UserControl x:Class="DevWindowUtility.Views.EnvPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DockPanel LastChildFill="True">
+        <TextBlock DockPanel.Dock="Top" Style="{StaticResource PageTitle}" Text="Environment"/>
+        <TextBlock DockPanel.Dock="Top" Style="{StaticResource PageSubtitle}"
+                   Text="Read-only view of Process, User, and Machine variables."/>
+
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,12">
+            <ComboBox Width="140"
+                      ItemsSource="{Binding Scopes}"
+                      SelectedItem="{Binding SelectedScope}"/>
+            <TextBox Width="280" Margin="8,0,0,0"
+                     Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged}"
+                     VerticalContentAlignment="Center"
+                     Tag="Filter name or value"/>
+            <Button Content="Copy name" Command="{Binding CopyNameCommand}" Margin="8,0,0,0"/>
+            <Button Content="Copy value" Command="{Binding CopyValueCommand}" Margin="8,0,0,0"/>
+            <Button Content="Refresh" Command="{Binding RefreshCommand}" Margin="8,0,0,0"/>
+        </StackPanel>
+
+        <TextBlock DockPanel.Dock="Bottom" Style="{StaticResource StatusText}" Text="{Binding Status}" TextWrapping="Wrap"/>
+
+        <DataGrid ItemsSource="{Binding Variables}"
+                  SelectedItem="{Binding SelectedVariable}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="260"/>
+                <DataGridTextColumn Header="Value" Binding="{Binding Value}" Width="*"/>
+                <DataGridTextColumn Header="Scope" Binding="{Binding Scope}" Width="90"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</UserControl>
